@@ -4,7 +4,7 @@
     <title>Drowning in Code</title>
   </head>
   <body>
-  	<h1>Lines of Code:</h1>
+  	<h1>Drownign in Code</h1>
   	<p id="codeLines"></p>
   	<br>
   	<p id="numOfSubroutines" onclick="makeFunction()">Buy a function (5 lines of code)</p>
@@ -25,8 +25,15 @@
 	
 	function updateProductTotals(var level)
 	{
-		if(level <= 1)
-		document.getElementById("codeLines").innerHTML = "lines of code:" + linesOfCode;
+		if(level >= 1)
+			{
+				document.getElementById("codeLines").innerHTML = "lines of code:" + linesOfCode;
+			}
+		if(level >= 2)
+			{
+				document.getElementById("numOfSubroutines").innerHTML = "functions: " + subroutines;
+			}
+		
 	}
 	function buttonClick() 
 	{
