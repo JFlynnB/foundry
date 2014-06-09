@@ -60,6 +60,10 @@
 		else{
 			alert("making a function takes about 5 lines of code");
 		}
+		if(subroutines >= 20)
+			{
+				document.getElementById("friendsHelping").innerHTML = "<p onclick=\"addFriend()\">friends helping: </p>" + friends;
+			}
 	}
 	function makeThing()
 	{
