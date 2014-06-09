@@ -5,13 +5,27 @@
   </head>
   <body>
   	<h1>Drownign in Code</h1>
-  	<p id="codeLines"></p>
+  	<table style="width:600px">
+		<tr>
+			<td><p id="codeLines" onclick="makeCodeLine()"></p></td>
+			<td><p id="friendsHelping"></p></td>
+		</tr>
+		<tr>
+			<td><p id="numOfSubroutines" onclick="makeFunction()">Make a function (5 lines of code)</p></td>
+		</tr>
+		<tr>
+			<td><p id="numOfThings" onclick="makeThing()">Make an object (-15 lines of code, -7 functions)</p></td>
+		</tr>
+	</table>
+  	
   	<br>
-  	<p id="numOfSubroutines" onclick="makeFunction()">Buy a function (5 lines of code)</p>
+  	
+	<br>
+	
 	<br>
 	<p>Click the button</p>
 
-	<button type="button" onclick="buttonClick()">Keyboard</button>
+	<button type="button" onclick="makeCodeLine()">Keyboard</button>
 
 
 
@@ -23,28 +37,74 @@
 	var suites = 0;
 	var oSystems = 0;
 	
-	function updateProductTotals(var level)
-	{
-		if(level >= 1)
-			{
-				document.getElementById("codeLines").innerHTML = "lines of code:" + linesOfCode;
-			}
-		if(level >= 2)
-			{
-				document.getElementById("numOfSubroutines").innerHTML = "functions: " + subroutines;
-			}
-		
-	}
-	function buttonClick() 
+	var numObjectsMade = 0;
+	
+	var friends = 0;
+	var friendCodeCounter = 0;
+	
+	
+	function makeCodeLine() 
 	{
 		linesOfCode++;
-	    document.getElementById("codeLines").innerHTML = "lines of code:" + linesOfCode;
+	    document.getElementById("codeLines").innerHTML = "<u>lines of code</u>:" + linesOfCode;
 	}
 	function makeFunction()
 	{
-		linesOfCode -= 5;
-		subroutines++;
-		document.getElementById("numOfSubroutines").innerHTML = "functions: " + subroutines;
+		if(linesOfCode >= 5)
+		{
+			linesOfCode -= 5;
+			subroutines++;
+			document.getElementById("numOfSubroutines").innerHTML = "<u>functions</u>: " + subroutines;
+			document.getElementById("codeLines").innerHTML = "<u>lines of code</u>:" + linesOfCode;
+		}
+		else{
+			alert("making a function takes about 5 lines of code");
+		}
+	}
+	function makeThing()
+	{
+		if(linesOfCode >= 15 && subroutines >= 7)
+		{
+			linesOfCode -= 15;
+			subroutines -= 7;
+			things++;
+			document.getElementById("numOfThings").innerHTML = "<u>classes</u>: " + things;
+			document.getElementById("numOfSubroutines").innerHTML = "<u>functions</u>: " + subroutines;
+			document.getElementById("codeLines").innerHTML = "<u>lines of code</u>:" + linesOfCode;
+			numObjectsMade++;
+			if(numObjectsMade == 1)
+				{
+					addFriend();
+				}
+		}
+		else
+			{
+				alert("making a class takes about 7 functions and 15 lines of code")
+			}
+	}
+	function addFriend()
+	{
+		friends++;
+		document.getElementById("friendsHelping").innerHTML = "friends helping: " + friends;
+		if(friends == 1)
+			{
+			alert("you showed your project to your friend and he wants to help");
+			mainLoop();
+			}
+	}
+	function update()
+	{
+		
+		if(friendCodeCounter >= 3)
+			{
+				makeCodeLine();
+				friendCodeCounter = 0;
+			}
+		friendCodeCounter += friends;
+	}
+	function mainLoop()
+	{
+		window.setInterval(function(){update()}, 1000)
 	}
 	</script>
   </body>
